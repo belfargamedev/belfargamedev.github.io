@@ -1,6 +1,6 @@
 ---
 title: Exploding Marbles
-published: 2025-04-09
+published: 2025-04-14
 description: "Which direction a exploding marble takes? We'll see"
 image: 'obsidian.png'
 tags: [Project Marbles]
