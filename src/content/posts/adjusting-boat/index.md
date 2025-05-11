@@ -11,36 +11,38 @@ lang: ''
 
 > Don't mind the _**love**ly_ spoiler.
 
-It's been a while, huh? The weekly progress update I wanted is turning out to be monthly. And that's ok, if we keep rowing forward. [Row, row row!](https://www.youtube.com/watch?v=_Mvx4X78sqk)
+It's been a while, huh? The weekly progress update schedule I aimed to follow is quickly becoming a monthly one... And that's ok, if we keep rowing our game development boat forward. [Row, row row!](https://www.youtube.com/watch?v=_Mvx4X78sqk)
 
-In this entry we will be covering the issue I found during the developement of the Godot demo, some alternative physics engines and even how floating number precision works. Fasten your seatbelts, it's going to be a ride.
+In this entry we will be covering the issue I found during the development of the Godot demo, some alternative physics engines and even how floating number precision works. Fasten your seatbelts, it's going to be a ride.
 
 # The iceberg
 
-If i were to use some metaphor about piloting a boat, I´d be Nami from One Piece having no idea on how to navigate in the Grand Line at first. Except I'm no expert in game development, even so in physics engines.
+If I were to use a metaphor about piloting a boat, I’d be Nami from One Piece, initially clueless about navigating the Grand Line. Except I'm no expert in game development, even less so in physics engines.
 
-But indeed I've indeed stumbled across a couple of issues in the default 2D physics system implemented in Godot we need to unpack. Let me show you a quick gif:
+But I've indeed stumbled across a couple of issues in the default 2D physics system implemented in Godot we need to unpack. Let me show you a quick gif:
 
 ![Sandbox pinball with flying ape](flying_ape.gif "Sandbox pinball with flying ape")
 
-The blindingly obvious issue, that is, once the Ape reaches [Mach 1](https://en.wikipedia.org/wiki/Mach_number) and crosses what was suppose to be the upper limit of the pinball arena. The funny thing about this bug is that it only happened once, when I was recording to show the current status to a few friends. I could not reproduce after a few minutes trying. That is the importance of multiple testers, my dear reader.
+The blindingly obvious issue, that is, once the Ape collides with a specific position, it reaches [Mach 1](https://en.wikipedia.org/wiki/Mach_number) and crosses what was suppose to be the upper limit of the pinball arena, achieving orbit. The funny thing about this bug is that it only happened once, when I was recording to show the current project status to a few friends. I could not reproduce after a few minutes trying. This is the importance of multiple testers, my dear reader.
 
-If you excuse the awful compression of the gif and ignore the unintended VHS effect on the background, you may be able to see that the flippers - although working at a first glance - moves a little ahead of the ball. That is, it first goes to the end position and, between the physics frames, pushes the ball along its trajectory, making its movement lag behind the actual push.
+If you excuse the awful compression of the gif and ignore the unintended VHS effect on the background, you also may be able to see that the flippers - although working at a first glance - moves a little ahead of the ball. That is, it first goes to the end position and, between the physics frames, pushes the ball along its trajectory, making its movement lag behind the actual push.
 
 ## The setup
 
-Explaining a bit about Physics Engine in the scope of game development in general, there are usually three main actors for a physics simulation:
+To explain the physics engine within the context of game development, there are typically three main components involved in a physics simulation:
 
 1. **Static Body:** an object that **does not** move at all, used for floors, non-breakable buildings or non-movable objects (in our example, it would be the walls of the pinball)
 2. **Dynamic/Rigid Body:** an object that moves and collides with all other objects in the physics world **via the simulation** of forces and momentum (the pinball ball)
 3. **Kinematic Body:** an object that does not react to external forces, albeit pushing dynamic bodies around and is moved via some **programming logic** (the flippers)
 
-And how was the ball able to trespass the ceiling of the arena? I have a few ideas, and onde of them may be my fault, but baby steps.
+And how was the ball able to trespass the ceiling of the arena? I have a few ideas, and one of them may be my fault, but baby steps.
 
-How the walls were builded is important. Each square block is a different static body, placed each aside another in what was supposed to be a pixel perfect combination of collision polygons, making the trespassing impossible - in theory. But the fact is, I did not build a single polygon, there is non-nullable gap between the walls.
+How the walls were built is important. Each square block is a different static body, placed each aside another in what was supposed to be a pixel perfect combination of collision polygons, making the trespassing impossible - in theory. But the fact is, I did not build a single polygon, there is non-nullable gap between the walls.
 
 ## The... Oops! Accident
-Here is where I deduct, based on my shallow knowledge on how physics simulation works, what happened to the ball clip through the wall:
+
+Here is my deduction, based on my limited knowledge of how physics simulations work, regarding what caused the ball to clip through the wall:
+
 1. The ball casts a ray on the direction of its velocity to check for any obstacle before its movement...
 2. ... but it targets perfectly the void between the walls. So it finds no obstacle and continue moving.
 3. Once it moves inside the gap between the walls, its sphere detects collision with the walls and  - as it can't be inside another object - its plunges itself upwards to respect the laws of physics and not let two bodies occupy the same space at the same time.
@@ -48,7 +50,7 @@ Here is where I deduct, based on my shallow knowledge on how physics simulation 
 
 # To starboard!
 
-So, I love Godot, but it seems the default behavior for this scenario is not good - or an easy fix would do and could be a skill issue of mine. Nevertheless, I am not satisfied with the result.
+I love Godot, but it seems the default behavior for this scenario is inadequate — perhaps an easy fix exists, or it could be a skill issue on my part. Nevertheless, I am not satisfied with the result.
 
 With the release of [Godot 4.4](https://godotengine.org/releases/4.4/), came an alternative physics engine to the custom one implemented by Godot, [Jolt Physics](https://github.com/jrouwe/JoltPhysics), but it is 3D only. That lead to me question, what are other physics engine alternatives, not necessarily for Godot, but for other game engines as well.
 
@@ -58,17 +60,17 @@ With the release of [Godot 4.4](https://godotengine.org/releases/4.4/), came an 
 * [LÖVE](https://love2d.org/wiki/love.physics): Uses Box2D.
 * [Bevy](https://bevyengine.org/): Has no embedded physics engine but two of the most famous are [Avian](https://github.com/Jondolf/avian) and [Rapier plugin](https://github.com/dimforge/bevy_rapier).
 
-I refuse, as a true aquarian (I'm born in September 7th), to give in and use Unity, a popular game engine choice, with a lot of assets ready to buy and use, but I don't like things the easy way.
+I refuse, as a true aquarian (I was born in September 7th), to give in and use Unity, a popular game engine choice, with a lot of assets ready to buy and use, but I don't like things the easy way.
 
 Game Maker is a cool engine, but it is too much GUI-oriented. I'd get irritated to work on a large project with it.
 
-With two options out of the way, we go to the fun options, where I get the opportunity to learn new languages:
+With two options out of the way, we go to the fun part, where I have the opportunity to learn new languages:
 * [Rust](https://www.rust-lang.org/): if I were to choose Bevy.
 * [Lua](https://www.lua.org/): if I were to choose Defold or LÖVE.
 
 ## Bevy
 
-I've started learning Rust intermittently since 2023, and was not able to use it in a meaningful project. But it is a language in my radar to learn for the future. And that future would be now, if Bevy was not so new in the game engine market, as it's still in early development stage and doesn't even have a built-in physics engine and still has breaking API changes every so often.
+I've started learning Rust intermittently since 2023, and was not able to use it in a meaningful project. But it is a language in my radar to learn for the future. That future could be now if Bevy weren't so new to the game engine market, as it is still in the early development stage and lacks a built-in physics engine, with breaking API changes occurring frequently.
 
 But the language itself is charming, mixing a modern and sometimes functional approach in a low-level environment, competing with C/C++.
 
@@ -94,13 +96,13 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
 
 ## Defold
 
-I stumbled across Defold as an alternative to Godot in a Reddit post, I believe. It's highlights are "free forever", "easy cross-platform" and "production ready". And it uses Lua, with an embedded code editor!
+I stumbled across Defold as an alternative to Godot in a Reddit post, I believe. Its highlights are "free forever", "easy cross-platform" and "production ready". And it uses Lua, with an embedded code editor!
 
-It has a good amount of tutorials and it seems like a capable engine, but... I have to admit it, I could not force myself into learning this new interface and understand how the scene files linked together and what were its base classes. It is not what I'm looking for at the moment. I want to have fun creating solutions via code, and that's where our next - and hopeful - last choice comes in.
+It has a good amount of tutorials and it seems like a capable engine, but... I have to admit it, I could not force myself into learning this new interface and understand how the scene files linked together and what are its base classes. It is not what I'm looking for at the moment. I want to have fun creating solutions via code, and that's where our next - and hopeful - last choice comes in.
 
 ## LÖVE
 
-First of all, excelent name, but where does it come from? It seems there is no consensus or definitive story. And second of all, strictly speaking, it is not a game engine, it's a Lua framework game development. But what is the difference?
+First of all, excelent name, but where does it come from? It seems there is no consensus or definitive story. And second of all, strictly speaking, it is not a game engine, it's a Lua game development framework. But what is the difference?
 
 A game engine provides all the tools for developing a game, usually providing a GUI (graphical user interface) and a set of tools that facilitates the import of assets and the export of the game itself. A framework is just the library that connects the low level operations - like rendering and input handling - to a higher level code (with a Lua script, in our case) or an easier API access. All the other tools and benefits need to be created from scratch.
 
@@ -125,11 +127,11 @@ After a week of learning Lua and porting the barebones of what I had to the LÖV
 
 It doesn't have a lot of pre-made classes that Godot has, but I'm excited to work with lua. This baby proof of concept has been made with 207 lines of code! And has a couple of improvements over the last one:
 
-* It has native SVG support via the [TÖVE](https://github.com/poke1024/tove2d) library - thank God it is still maintained! So we can make close up shots and still have a somewhat clean image:
+* It has native SVG support via the [TÖVE](https://github.com/poke1024/tove2d) library - thank God it is still maintained! So we can make close up shots and still have a somewhat clean image, as it creates and render the vector graphics as meshes:
 
 ![Bear SVG close up](svg_close_up.png "Bear SVG close up")
 
-And the SVGs can be animated! It will be a nice polish, to be able to animate all the animal marbles into different expressions smoothly. Imagine this little bear guy smiling!
+And the SVGs can be animated! It will be a nice polish, to be able to animate all the animal marbles into different expressions smoothly. Imagine this little bear guy closing its eyes in pain every time it hits a wall. Delightful! (no animals were hurt int the process of making this game)
 
 * Box2D is the physics engine used in [Angry Birds](https://www.angrybirds.com/), a game renowned by its physics!
 
@@ -188,16 +190,18 @@ local function shouldStop(currAngle, finalAngle)
 end
 ```
 
-That `0.01` is the delta for my comparison, in other words, if two numbers have less than this value of difference, we can consider them equal. And I never had to deal with this because Godot was doing this behind the scenes.
+That `0.01` is the delta for my comparison, in other words, if two numbers have less than this value of difference, we can consider them equal. And I never had to deal with this because Godot was doing this behind the scenes. The more you know!
 
 > Habemus working pinbal!
 
 ## Next Steps
 
-With a better working playground I can plan and test out the pinball elements the game can have to make this idea fun. The next days I intend to play some pinball games to understand what works and what not to better understand what I want to make this creation unique.
+Here is the fun and the hard part. The fun part is to experiment on the possibilities of what can I do as pinball elements. The hard part is not to be distracted too much on improving the current code and creating templates for the next - sure to come - game objects and logic.
+
+Also, I have an excuse to play some pinball games as inspiration. Space cadet, here I come!
 
 ---
 
-Thank you for reading, have a cookie 🍪
+Thank you for reading! Have a cookie 🍪
 
 See ya next month!
