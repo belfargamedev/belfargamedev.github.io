@@ -68,14 +68,19 @@ export const profileConfig: ProfileConfig = {
     //   icon: 'fa6-brands:steam',
     //   url: 'https://store.steampowered.com',
     // },
+    // {
+    //   name: 'itch.io',
+    //   icon: 'fa6-brands:itch-io',
+    //   url: 'https://belfardev.itch.io/',
+    // },
     {
-      name: 'itch.io',
-      icon: 'fa6-brands:itch-io',
-      url: 'https://belfardev.itch.io/',
+      name: 'Ko-fi',
+      icon: 'simple-icons:kofi',
+      url: 'https://ko-fi.com/belfardev',
     },
     {
       name: 'GitHub',
-      icon: 'fa6-brands:github',
+      icon: 'simple-icons:github',
       url: 'https://github.com/belfargamedev',
     },
   ],

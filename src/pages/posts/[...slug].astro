@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import kofiButton from './src/assets/images/support_me_on_kofi.png'
 import path from 'node:path'
 import { getCollection } from 'astro:content'
 import License from '@components/misc/License.astro'
@@ -106,6 +108,11 @@ const jsonLd = {
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
+            <center>
+                <a href="https://ko-fi.com/belfardev" target="_blank">
+                    <Image src={kofiButton} width="300px" alt="Support me on Ko-fi!" />
+                </a>
+            </center>
         </div>
     </div>
 
@@ -130,5 +137,6 @@ const jsonLd = {
             </div>}
         </a>
     </div>
+
 
 </MainGridLayout>
