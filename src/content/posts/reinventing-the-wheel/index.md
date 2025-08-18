@@ -44,7 +44,7 @@ As I don't want to copy a game - be it because of legal issues or lack creativit
 * Every level will have a different layout with a different set of enemies - in the form of **square marbles** - to defeat in order to clear the level;
 * With every passing level, there will be a choice to **upgrade** their current set of marbles or **acquire** a new one;
 * A **bigger challenge** will await the player each set of levels;
-* Rogue-like elements, like random levels and meta upgrades for each run;
+* **Rogue-like** elements, like random levels and meta upgrades for each run;
 
 But game design was not the culprit for holding me back this many months. Let's get to the weak spot of our game engine of choice.
 
@@ -54,5 +54,12 @@ LÖVE has no built-in UI elements whatsoever. All it provides is the ability to 
 
 ## The Goal
 
-I wanted a system to create the UI via simple shapes, provided by the existing drawing functions, in order to increase future compatibility with mobile and web exports - possibly - so external modules that depended upon compiled libraries were not taken into account. Also, the target was to have simple yet customizable components to match the style of the game, leaning towards a simple aesthetic, with a few
+I wanted a system to create the UI via simple shapes, provided by the existing drawing functions, in order to increase future compatibility with mobile and web exports - possibly - so external modules that depended upon compiled libraries were not taken into account.
 
+Also, the target was to have simple yet customizable components to match the style of the game, leaning towards a simple aesthetic, with a few style options, heavily inspired by HTML capabilities, along with the ones I had in Godot. _You have to understand, I'm no ordinary man._
+
+## Sidetracking 
+
+Turns out it is very difficult to include all of its capabilities into a system made by a single user in a week... But we are having progress! I'm in the middle of refactoring the resize action, in order to remove the position calculation from every game frame, but here is the current status of the tiling of multiple elements in a single container.
+
+![Prototype UI](prototype_ui.jpg "Prototype UI")
