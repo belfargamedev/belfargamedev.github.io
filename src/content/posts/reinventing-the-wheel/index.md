@@ -70,17 +70,53 @@ And that's about it.
 
 > Actually, no, there is another tangent.
 
-## Design Styles
+# Design Styles
 
-This year, Apple has launched a new design for their systems, [Liquid Glass](https://www.apple.com/br/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/), and - as the giant it is - should influence the direction overall design heads toward.
+I'm by no means a design person. I'm interested in a bit of the theory behind it and some concepts by I'm far from doing something design-related. I'd like to practice? Sure, and that time will come when I'll have to create the interface of my upcoming game, so be prepared for the horrors I'll show here in the future.
 
-At first, I thought Liquid Glass was a not so great change. The transparency with blur and distortion makes the content below weirdly present yet unable to be read. But with each passing day of watching videos reviewing their presentation, more it grew in me, and I'll explain why - but we have to go to a bit of the early history of design. And it all started with **skeumorphism**.
+So, this year Apple has launched a new design for their systems, [Liquid Glass](https://www.apple.com/br/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/), and - as the giant it is - should influence the direction overall design heads toward. At first, I thought Liquid Glass was a not so great change. The transparency with blur and distortion made the content below weirdly present yet unable to be read.
 
-### Skeumorphism
+But with each passing day of watching reviews of their presentation, more it grew in me, and I'll explain why - but we have to go to a bit of the early history of design.
 
-When smartphones were launched, its tech was still alien to the average user: people had phones with small screens and big keyboards, not a single slab of screen. This big screen paved the way for the smartphone to become a swiss-army knife of tools.
+## Skeumorphism
 
-### Flat Design
+When smartphones were just crawling out of their cribs, its tech was still alien to the average user: people had phones with small screens and big keyboards, not a single slab of screen. This big screen paved the way for the smartphone to become a swiss-army knife of tools. But that came with a question for the designers of these systems: how to guide the user to the relevant apps?
 
-![History of Instagram Logo](https://cdn.logojoy.com/wp-content/uploads/20230511115846/Instagram-logo-evolution-infographic.jpg)
-> You can check the source of this image and a much more comprehensive analysis in https://looka.com/blog/instagram-logo/ 
+Skeumorphism comes with the idea to use real world objects to convey virtual functionalities, like having a photorealistic image of a camera for the camera app and a notebook for the virtual phonebook. You may think this is a somewhat new approach, but we can go decades back with the "Save" button being a floppy disk (2010 kids doesn't have a faint idea what I'm talking about now, sorry) or a "New file" being a blank sheet of paper.
+
+As every trend has it opposing force, to move away from the real objects filled with textures and details, a simpler approach to design was put forward and accepted.
+
+## Flat Design
+
+To rest the tired eyes of the information overload every interface had, designers shifted to simple shapes and fewer colors to convey brands and ideas. An example for us to check is the Instagram logo:
+
+![History of Instagram Logo](instagram_logo.jpg "History of Instagram Logo")
+> You can check the source of this image and a more comprehensive analysis at https://looka.com/blog/instagram-logo/ 
+
+See that it went from a camera that had reflex in its lenses and even leather texture at the top half tll
+o three basic shapes that conveyed the main elements of it? To complement the shape, it also choosed a set of colors for its branding, and now this logo is impossible to be confused with another platform ot not be known.
+
+## Neumorphism
+
+To bring balance back to the design world, a middle ground has been picking up steam. Neumorphism takes the simplicity of the shapes and textures of the Flat Design and reimagines its components as being physical objects in the real world, with shadow and smooth textures with light-reflecting properties.
+
+![Neumorphism UI](neumorphism.png "Neumorphism UI")
+> You can check the source of this image and a lenghtier guide to Neumorphism at https://www.justinmind.com/ui-design/neumorphism
+
+That way, the interface remains simple in shapes and colors but with a new life in it, reacting to light and being texturized. Changing the "material" of the elements now is a possibility to inovate in this field, just like with liquid glass. And it seems like a trend to be followed, as Microsoft itself adopted similar design objects in their projects. An exemple is the Microsoft Teams download page, following Apple's approach with objects with glass-like properties:
+
+![Microsoft Teams](microsoft_teams.png "Microsoft Teams")
+
+# Final remarks
+
+Neumorphism is something I'm becoming passionate about, and I intend to follow this design style in this game. It will be a challange to create something as vibrant as this in a barebones framework, but I'm exicted for it.
+
+The goal is for next post to have a functional UI and some basic gameplay elements for us to explore.
+
+---
+
+As aways, thank you for reading.
+
+See you in the next post!
+
+
