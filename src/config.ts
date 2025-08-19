@@ -1,10 +1,11 @@
 import type {
-  LicenseConfig,
-  NavBarConfig,
-  ProfileConfig,
-  SiteConfig,
-} from './types/config'
-import { LinkPreset } from './types/config'
+	ExpressiveCodeConfig,
+	LicenseConfig,
+	NavBarConfig,
+	ProfileConfig,
+	SiteConfig,
+} from "./types/config";
+import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
   title: 'Belfar Dev',
@@ -31,24 +32,22 @@ export const siteConfig: SiteConfig = {
   favicon: [    // Leave this array empty to use the default favicon
     {
       src: '/favicon/favicon.png',    // Path of the favicon, relative to the /public directory
-    //   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-    //   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
     }
   ]
-}
+};
 
 export const navBarConfig: NavBarConfig = {
-  links: [
-    LinkPreset.Home,
-    LinkPreset.Archive,
-    LinkPreset.About,
-    // {
-    //   name: 'Itch.io',
-    //   url: 'https://belfardev.itch.io/',     // Internal links should not include the base path, as it is automatically added
-    //   external: true,                               // Show an external link icon and will open in a new tab
-    // },
-  ],
-}
+   links: [
+     LinkPreset.Home,
+     LinkPreset.Archive,
+     LinkPreset.About,
+     // {
+     //   name: 'Itch.io',
+     //   url: 'https://belfardev.itch.io/',     // Internal links should not include the base path, as it is automatically added
+     //   external: true,                               // Show an external link icon and will open in a new tab
+     // },
+   ],
+ }
 
 export const profileConfig: ProfileConfig = {
   avatar: 'assets/images/avatar.svg',  // Relative to the /src directory. Relative to the /public directory if it starts with '/'
@@ -87,7 +86,13 @@ export const profileConfig: ProfileConfig = {
 }
 
 export const licenseConfig: LicenseConfig = {
-  enable: false,
-  name: 'CC BY-NC-SA 4.0',
-  url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
-}
+   enable: false,
+   name: 'CC BY-NC-SA 4.0',
+   url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+};
+
+export const expressiveCodeConfig: ExpressiveCodeConfig = {
+	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
+	// Please select a dark theme, as this blog theme currently only supports dark background color
+	theme: "github-dark",
+};

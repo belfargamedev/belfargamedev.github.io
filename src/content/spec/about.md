@@ -39,7 +39,7 @@ The first one is trivial to explain. A blog can't exist without words, and I lik
 
 Along with my fondness of writing, I believe this is worth a shot.
 
-Before I ask you to read the entries, I have to say that the creation of this blog would be procrastinated to God knows when if it weren't for a friend of mine to encourage me to finally do it.
+Before I ask you to read the entries, I have to say that the creation of this blog would be procrastinated to God knows when if it weren't for a friend of mine - now girlfriend, love you - to encourage me to finally do it.
 
 > Thank you, I hope you have fun reading each entry, even though I don't have a newsletter as of now.
 
