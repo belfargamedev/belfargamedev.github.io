@@ -7,7 +7,7 @@
     "start": "astro dev",
     "check": "astro check",
     "build": "astro build",
-    "index-pages": "pagefind",
+    "index-pages": "pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
