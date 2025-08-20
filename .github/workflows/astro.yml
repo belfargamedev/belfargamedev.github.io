@@ -76,7 +76,8 @@ jobs:
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
       - name: Index Pages with Pagefind
-        run: pagefind --site dist
+        run: ${{ steps.detect-package-manager.outputs.runner }} index-pages \
+            --site "${{ steps.pages.outputs.origin }}" \
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
