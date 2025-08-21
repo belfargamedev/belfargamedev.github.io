@@ -111,8 +111,10 @@ const jsonLd = {
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
             <center>
-                <a class="plausible-event-name=Kofi+Click" href="https://ko-fi.com/belfardev" target="_blank">
-                    <Image src={kofiButton} width="450px" alt="Support me on Ko-fi!" />
+                <a href="https://ko-fi.com/belfardev" target="_blank">
+                    <button class="plausible-event-name=Kofi+Click">
+                        <Image src={kofiButton} width="450px" alt="Support me on Ko-fi!" />
+                    </button>
                 </a>
             </center>
         </div>
